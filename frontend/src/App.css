@@ -1,0 +1,7 @@
+/* Global styles live in index.css; keep App.css reserved for route-level helpers if needed. */
+/* Route-level polish is intentionally small; the visual language stays shared across every passage. */
+.route-shell {
+    min-height: 100vh;
+    background-image: radial-gradient(circle at 50% 0%, rgba(255,255,255,.04), transparent 38%);
+    overflow-x: clip;
+}
