@@ -8,6 +8,7 @@ import HomePage from "@/pages/HomePage";
 import StayEasePage from "@/pages/StayEasePage";
 import StockPilotPage from "@/pages/StockPilotPage";
 import SplitfinPage from "@/pages/SplitfinPage";
+import { Analytics } from "@vercel/analytics/react";
 
 const NotFoundPage = () => (
   <main
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+      <Analytics />
     </div>
   );
 }
