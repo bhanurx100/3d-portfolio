@@ -12,6 +12,11 @@ export const PRODUCTS = {
     platform: "WEB + MOBILE",
     surfaces: ["web", "mobile"],
     stage: "Connected Three-Role Platform",
+    status: {
+      badge: "Currently building",
+      demoLabel: "Interactive demo · Sample data",
+      actionNote: "Demo booking",
+    },
     door: "se_hotel",
     heroImage: "se_apartment",
     line: "A connected hospitality platform uniting traveller discovery, owner property management, and platform oversight across hotels, PGs, hostels, homestays, apartments, and villas.",
@@ -55,6 +60,11 @@ export const PRODUCTS = {
     platform: "WEB + MOBILE // CONCEPT",
     surfaces: ["web", "mobile"],
     stage: "Product Exploration & Concept Screens",
+    status: {
+      badge: "Currently building",
+      demoLabel: "Interactive demo · Sample data",
+      actionNote: "Simulated sale",
+    },
     isConcept: true,
     conceptNote:
       "Product exploration using illustrative retail catalog and sales data — demonstrating how everyday shop billing and multi-shelf inventory connect across mobile and web.",
@@ -102,6 +112,11 @@ export const PRODUCTS = {
     platform: "MOBILE ONLY",
     surfaces: ["mobile"],
     stage: "Mobile-First Product Build",
+    status: {
+      badge: "Currently building",
+      demoLabel: "Interactive demo · Sample data",
+      actionNote: "Sample settlement",
+    },
     door: "sf_emblem",
     heroImage: "sf_finance",
     line: "One mobile-only product connecting personal money tracking — accounts, income, budgets, and spending — with shared group expenses and settlements.",

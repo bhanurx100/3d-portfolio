@@ -19,6 +19,7 @@ import {
   toCents,
   validateAndCreateSettlement,
 } from "@/lib/splitfinLedger";
+import { PRODUCTS } from "@/data/products";
 
 export const SPLITFIN_MEMBERS = [
   { id: "you", name: "You", initials: "BL" },
@@ -356,8 +357,8 @@ export const SplitfinMobilePrototype = ({ initialTab = "money", activeStage = nu
     >
       <div className="flex items-center justify-between border-b border-[#2DD4BF]/15 bg-[#081221] px-5 pb-3 pt-12">
         <div>
-          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[#2DD4BF]">
-            Splitfin · Mobile Only
+          <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-[#2DD4BF]">
+            {PRODUCTS.splitfin.status?.demoLabel || "Interactive demo · Sample data"}
           </span>
           <h4 className="font-serif text-xl text-[#F3F0E6]">
             {tab === "money"

@@ -19,6 +19,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { A } from "@/data/assets";
+import { PRODUCTS } from "@/data/products";
 
 export const STAYEASE_PROPERTIES = [
   {
@@ -290,8 +291,8 @@ export const StayEaseMobileApp = ({ activeStage = "explore" }) => {
               {role === "traveller" ? "Find & Manage Stays" : role === "owner" ? "Owner Hub" : "Admin Oversight"}
             </h4>
           </div>
-          <span className="rounded-full border border-[#D4AF37]/35 bg-[#131E3D] px-2 py-0.5 font-mono text-[8px] uppercase text-[#D4AF37]">
-            Simulated
+          <span className="rounded-full border border-[#D4AF37]/35 bg-[#131E3D] px-2 py-0.5 font-mono text-[7.5px] uppercase text-[#D4AF37]">
+            {PRODUCTS.stayease.status?.demoLabel || "Interactive demo · Sample data"}
           </span>
         </div>
 

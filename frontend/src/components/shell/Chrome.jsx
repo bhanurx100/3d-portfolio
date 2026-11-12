@@ -100,8 +100,16 @@ const LINKS = [
   { to: "/#contact", label: "Contact", tag: "05 · Terminus" },
 ];
 
+const HEADER_LINKS = [
+  { to: "/#about", label: "About", id: "about" },
+  { to: "/#journey", label: "Journey", id: "journey" },
+  { to: "/#projects", label: "Work", id: "projects" },
+  { to: "/#contact", label: "Contact", id: "contact" },
+];
+
 export const Nav = () => {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
   const reduced = useReducedMotion();
@@ -115,20 +123,64 @@ export const Nav = () => {
     return () => window.removeEventListener("keydown", k);
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      window.__lenis?.stop?.();
+    } else {
+      document.body.style.overflow = "";
+      window.__lenis?.start?.();
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.__lenis?.start?.();
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection("");
+      return undefined;
+    }
+    const ids = ["hero", "about", "journey", "projects", "contact"];
+    const observers = [];
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) setActiveSection(id);
+          });
+        },
+        { rootMargin: "-35% 0px -45% 0px", threshold: 0.01 },
+      );
+      io.observe(el);
+      observers.push(io);
+    });
+    return () => observers.forEach((io) => io.disconnect());
+  }, [pathname]);
+
   const handleLinkClick = (e, to) => {
     setOpen(false);
+    document.body.style.overflow = "";
+    window.__lenis?.start?.();
     if (to.startsWith("/#")) {
       const targetId = to.slice(2);
       e.preventDefault();
       if (pathname === "/") {
         const el = document.getElementById(targetId);
-        if (el) scrollToY(el.getBoundingClientRect().top + window.scrollY);
+        if (el) {
+          requestAnimationFrame(() => {
+            scrollToY(el.getBoundingClientRect().top + window.scrollY);
+          });
+        }
       } else {
         navigate(to);
       }
     } else if (to === "/" && pathname === "/") {
       e.preventDefault();
-      scrollToY(0);
+      requestAnimationFrame(() => scrollToY(0));
     }
   };
 
@@ -151,19 +203,19 @@ export const Nav = () => {
           style={{ "--ink": "#EDE9E0", "--acc": accentFor(pathname) }}
         >
           <Logo />
-          <span className="f-mono hidden sm:block">Bhanuprasad L</span>
+          <span className="f-mono hidden text-[10px] tracking-[0.2em] sm:block">Bhanuprasad L</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-          {LINKS.slice(1).map((l) => {
-            const active = l.to.startsWith("/#") ? hash === l.to.slice(1) : pathname === l.to;
+        <nav className="hidden items-center gap-5 lg:flex" aria-label="Primary">
+          {HEADER_LINKS.map((l) => {
+            const active = pathname === "/" && (activeSection === l.id || hash === `#${l.id}`);
             return (
               <Link
                 key={l.to}
                 to={l.to}
                 onClick={(e) => handleLinkClick(e, l.to)}
                 data-testid={`nav-${l.label.toLowerCase()}-link`}
-                className={`f-mono link-line pb-1 transition-opacity duration-300 hover:opacity-100 ${
+                className={`f-mono link-line pb-0.5 !text-[10px] tracking-[0.2em] transition-opacity duration-300 hover:opacity-100 ${
                   active ? "opacity-100 text-[var(--acc)]" : "opacity-65"
                 }`}
                 style={{ "--acc": accentFor(pathname) }}
@@ -177,21 +229,26 @@ export const Nav = () => {
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          className="f-mono flex items-center gap-3 transition-transform active:scale-95"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-[#EDE9E0] transition-colors hover:border-white/30 active:scale-95"
           data-testid="nav-menu-toggle"
           aria-expanded={open}
           aria-controls="site-index-overlay"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
         >
-          {open ? "Close" : "Index"}
-          <span className="relative block h-3 w-6">
+          <span className="relative block h-3.5 w-5">
             <span
-              className={`absolute left-0 top-0 h-px w-6 bg-current transition-transform duration-500 ${
-                open ? "translate-y-[6px] rotate-45" : ""
+              className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${
+                open ? "translate-y-[6.5px] rotate-45" : ""
               }`}
             />
             <span
-              className={`absolute bottom-0 left-0 h-px w-6 bg-current transition-transform duration-500 ${
-                open ? "-translate-y-[5px] -rotate-45" : ""
+              className={`absolute left-0 top-[6.5px] h-px w-5 bg-current transition-opacity duration-200 ${
+                open ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute bottom-0 left-0 h-px w-5 bg-current transition-transform duration-300 ${
+                open ? "-translate-y-[6.5px] -rotate-45" : ""
               }`}
             />
           </span>
@@ -241,14 +298,12 @@ export const Nav = () => {
               <span className="f-mono c-mut">Bhanuprasad L · Product Engineer</span>
               <a
                 href={resumeMeta.href}
-                download={resumeMeta.isExternalDrive ? undefined : resumeMeta.fileName}
-                target={resumeMeta.isExternalDrive ? "_blank" : undefined}
-                rel={resumeMeta.isExternalDrive ? "noopener noreferrer" : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-[#D8C08A]/50 bg-[#D8C08A]/10 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#D8C08A] transition-colors hover:bg-[#D8C08A] hover:text-[#070809]"
-                data-testid="menu-download-resume"
+                data-testid="menu-view-resume"
               >
-                <Download size={13} />
-                <span>Download Resume</span>
+                <span>View Resume</span>
               </a>
             </div>
           </motion.div>

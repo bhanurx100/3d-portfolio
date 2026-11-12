@@ -125,6 +125,14 @@ export default function SplitfinPage() {
                   <span className="h-3 w-px bg-white/15" />
                   <Note accent>{p.domain}</Note>
                   <Platform p={{ ...p, mobileBadge: "MOBILE ONLY" }} />
+                  {p.status?.badge && (
+                    <span
+                      className="rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-[#F3F0E6]/80"
+                      data-testid="splitfin-status-badge"
+                    >
+                      {p.status.badge}
+                    </span>
+                  )}
                 </div>
 
                 <MaskLines

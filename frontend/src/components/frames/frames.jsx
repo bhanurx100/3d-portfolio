@@ -142,7 +142,11 @@ export const PhoneFrame = ({
             }}
           >
             {/* Interactive 375x812 Logical Mobile Screen */}
-            <div className="relative overflow-hidden bg-black" style={{ borderRadius: "12.1cqw" }}>
+            <div
+              className="relative overflow-hidden bg-black"
+              style={{ borderRadius: "12.1cqw" }}
+              data-lenis-prevent
+            >
               <ScaledStage w={375} h={812}>
                 {children}
               </ScaledStage>

@@ -124,6 +124,14 @@ export default function StayEasePage() {
                 <span className="h-3 w-px bg-white/15" />
                 <Note accent>{p.index} // {p.domain}</Note>
                 <Platform p={{ ...p, mobileBadge: "iPHONE SHOWCASE" }} />
+                {p.status?.badge && (
+                  <span
+                    className="rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-[#F8F5EE]/80"
+                    data-testid="stayease-status-badge"
+                  >
+                    {p.status.badge}
+                  </span>
+                )}
               </div>
 
               <MaskLines

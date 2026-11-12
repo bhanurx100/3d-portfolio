@@ -1,5 +1,6 @@
 import { lazy, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Download, ExternalLink, Eye, X } from "lucide-react";
 import { Closing, scrollToY } from "@/components/shell/Chrome";
 import { Magnetic, Marquee, MaskLines } from "@/components/shell/Primitives";
@@ -80,6 +81,7 @@ const scrollToSection = (id) => {
 };
 
 export default function HomePage() {
+  const reduced = useReducedMotion();
   const focusedProjectRef = useRef(null);
   const heroSlotRef = useRef(null);
   const aboutSlotRef = useRef(null);
@@ -181,33 +183,53 @@ export default function HomePage() {
               />
             </div>
 
-            {/* Identity & Actions */}
+            {/* Identity & Actions — coordinated staggered entrance */}
             <div className="min-w-0 text-center lg:col-span-6 lg:text-left">
-              <div className="flex items-center justify-center gap-3 lg:justify-start">
+              <motion.div
+                initial={reduced ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-center justify-center gap-3 lg:justify-start"
+              >
                 <span className="h-px w-7 bg-[#D8C08A]/75 sm:w-10" />
                 <span className="f-mono tracking-[0.24em] text-[#D8C08A]">
                   Product Engineer
                 </span>
-              </div>
+              </motion.div>
 
               <MaskLines
                 as="h1"
                 inView={false}
-                delay={0.06}
+                delay={0.14}
                 lines={["Bhanuprasad L"]}
                 className="f-display mt-3 text-[clamp(1.9rem,8.4vw,3.1rem)] leading-[0.94] tracking-[-0.03em] text-[#F5F1E8] lg:mt-4 lg:text-[clamp(2.85rem,4.1vw,4.35rem)]"
                 data-testid="hero-headline"
               />
 
-              <p className="f-serif mx-auto mt-3.5 max-w-xl text-[19px] leading-[1.3] text-[#F2EEE5] sm:text-[25px] lg:mx-0 lg:mt-5 lg:text-[29px]">
+              <motion.p
+                initial={reduced ? false : { opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+                className="f-serif mx-auto mt-3.5 max-w-xl text-[19px] leading-[1.3] text-[#F2EEE5] sm:text-[25px] lg:mx-0 lg:mt-5 lg:text-[29px]"
+              >
                 I turn real-world friction into thoughtful, working web and mobile products.
-              </p>
+              </motion.p>
 
-              <p className="mt-3.5 hidden max-w-lg text-[15px] leading-relaxed text-[#EDE9E0]/76 lg:block">
+              <motion.p
+                initial={reduced ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-3.5 hidden max-w-lg text-[15px] leading-relaxed text-[#EDE9E0]/76 lg:block"
+              >
                 From problem framing and resilient backend data models to tactile mobile-first interfaces across hospitality, local retail billing, and personal finance.
-              </p>
+              </motion.p>
 
-              <div className="mt-6 hidden max-w-lg grid-cols-3 gap-5 border-y border-white/10 py-3.5 lg:grid">
+              <motion.div
+                initial={reduced ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-6 hidden max-w-lg grid-cols-3 gap-5 border-y border-white/10 py-3.5 lg:grid"
+              >
                 <div>
                   <span className="f-mono c-acc block">Focus</span>
                   <span className="mt-0.5 block text-xs text-[#EDE9E0]/85">Web &amp; Mobile Craft</span>
@@ -220,9 +242,14 @@ export default function HomePage() {
                   <span className="f-mono c-acc block">Education</span>
                   <span className="mt-0.5 block text-xs text-[#EDE9E0]/85">NIE Mysuru</span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-5 lg:mt-8 lg:justify-start">
+              <motion.div
+                initial={reduced ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-6 flex flex-wrap items-center justify-center gap-5 lg:mt-8 lg:justify-start"
+              >
                 <Magnetic>
                   <button
                     type="button"
@@ -243,7 +270,7 @@ export default function HomePage() {
                 >
                   Explore Work ↓
                 </button>
-              </div>
+              </motion.div>
             </div>
 
             {/* Desktop Hero MacBook Working Portrait Anchor — Exact 4:3 Natural Ratio */}
@@ -454,14 +481,14 @@ export default function HomePage() {
                     }}
                   >
                     <div
-                      className={`cinematic-frame pointer-events-none relative aspect-[16/10] overflow-hidden bg-black/50 lg:col-span-7 ${
+                      className={`cinematic-frame pointer-events-none relative aspect-[3/2] overflow-hidden bg-black/50 lg:col-span-7 ${
                         reverse ? "lg:order-2" : ""
                       }`}
                     >
                       <img
                         src={A(vis.img)}
                         alt={vis.alt}
-                        className="image-reveal h-full w-full object-cover"
+                        className="image-reveal h-full w-full object-cover object-top"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#06070a]/85 via-[#06070a]/20 to-transparent" />
 
@@ -498,9 +525,16 @@ export default function HomePage() {
                       }`}
                     >
                       <div className="flex items-center justify-between gap-3">
-                        <span className="f-mono" style={{ color: p.theme.acc }}>
-                          {p.domain}
-                        </span>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="f-mono" style={{ color: p.theme.acc }}>
+                            {p.domain}
+                          </span>
+                          {p.status?.badge && (
+                            <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-[#EDE9E0]/75">
+                              {p.status.badge}
+                            </span>
+                          )}
+                        </div>
                         <ArrowUpRight
                           size={18}
                           className="shrink-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"

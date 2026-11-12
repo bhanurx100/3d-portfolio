@@ -14,6 +14,7 @@ import {
   ShoppingBag,
   Truck,
 } from "lucide-react";
+import { PRODUCTS } from "@/data/products";
 
 const INITIAL_PRODUCTS = [
   {
@@ -358,10 +359,10 @@ export const StockPilotMobileApp = ({ activeStage = "overview" }) => {
     >
       {/* Top Bar */}
       <div className="border-b border-white/10 bg-[#16191E] px-4 pb-2.5 pt-11">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <div>
-            <span className="font-mono text-[8.5px] uppercase tracking-[0.2em] text-[#F59E0B]">
-              StockPilot Concept
+            <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-[#F59E0B]">
+              {PRODUCTS.stockpilot.status?.demoLabel || "Interactive demo · Sample data"}
             </span>
             <h4 className="text-base font-semibold leading-tight">
               {tab === "overview"
