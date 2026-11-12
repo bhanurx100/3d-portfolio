@@ -1,0 +1,155 @@
+{
+  "project_title": "BHANUPRASAD — Founder-led product portfolio",
+  "app_type": "3d_experience / portfolio",
+  "brand_identity": {
+    "tagline": "Ideas, built to be used.",
+    "role": "Independent Product Builder (NOT a developer résumé, strict NO skills list)",
+    "aesthetic_concept": "The Passage, with C's prints — cinematic monumental concrete corridor in 1-point perspective with three tall doorways receding in depth, each spilling its product's signature ambient light",
+    "logo_favicon": "Original doorway-shaped 'B' monogram vector icon (architectural arch framed letter B)",
+    "routes": [
+      "/",
+      "/about",
+      "/products/stayease",
+      "/products/stockpilot",
+      "/products/splitfin"
+    ]
+  },
+  "typography": {
+    "google_fonts_import": "https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap",
+    "display_font": "Cinzel, serif (Condensed Monumental Grotesque replacement for heroic headlines & 3D space text)",
+    "editorial_font": "Newsreader, Georgia, serif (Refined editorial storytelling & problem narratives)",
+    "body_font": "Plus Jakarta Sans, sans-serif (Clean interface text, captions & interactive UI elements)",
+    "annotation_font": "JetBrains Mono, monospace (Contact-sheet annotations, frame numbers & platform tags)",
+    "hierarchy": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none uppercase",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-tight",
+      "h3_subsection": "text-xl sm:text-2xl font-semibold tracking-normal",
+      "h4_card": "text-lg sm:text-xl font-medium",
+      "body_main": "text-base sm:text-lg leading-relaxed text-slate-300 font-normal",
+      "monospace_tag": "text-xs tracking-widest uppercase font-mono text-amber-400/80"
+    }
+  },
+  "colors": {
+    "shared_shell": {
+      "background": "#070809",
+      "surface_elevated": "#0F1115",
+      "surface_border": "rgba(255, 255, 255, 0.08)",
+      "text_primary": "#F1F5F9",
+      "text_muted": "#8A94A6",
+      "accent_gold": "#D4AF37"
+    },
+    "product_themes": {
+      "stayease": {
+        "primary_bg": "#0A1128",
+        "secondary_surface": "#131E3D",
+        "warm_cream": "#F8F5EE",
+        "sand_neutral": "#E2D9C8",
+        "accent_gold": "#D4AF37",
+        "glow": "rgba(212, 175, 55, 0.25)",
+        "platform_tag": "WEB + MOBILE"
+      },
+      "stockpilot": {
+        "primary_bg": "#121417",
+        "secondary_surface": "#1E2228",
+        "charcoal": "#292E36",
+        "slate": "#3A414D",
+        "muted_amber": "#D97706",
+        "bright_amber": "#F59E0B",
+        "glow": "rgba(217, 119, 6, 0.25)",
+        "platform_tag": "WEB + MOBILE (PRODUCT EXPLORATION / CONCEPT SCREENS)"
+      },
+      "splitfin": {
+        "primary_bg": "#0A1628",
+        "secondary_surface": "#0D3B3E",
+        "deep_teal": "#114B4F",
+        "refined_mint": "#2DD4BF",
+        "warm_neutral": "#F3F0E6",
+        "glow": "rgba(45, 212, 191, 0.25)",
+        "platform_tag": "MOBILE ONLY"
+      }
+    }
+  },
+  "3d_libraries": {
+    "engine": "React Three Fiber (@react-three/fiber) + Drei (@react-three/drei)",
+    "corridor_scene": {
+      "camera": "PerspectiveCamera with scroll-driven z-axis movement and tilt-shift effect",
+      "mesh_geometry": "One-point perspective monumental concrete corridor, 3 tall architectural recessed doorways with emissive light volumes",
+      "doorway_lights": [
+        "Door 1 (Left/Near): StayEase Midnight Blue & Champagne Gold volumetric spot light",
+        "Door 2 (Center/Mid): StockPilot Muted Amber volumetric spot light",
+        "Door 3 (Right/Far): Splitfin Refined Mint volumetric spot light"
+      ],
+      "monumental_text": "3D Text geometry 'BHANUPRASAD' standing physically inside the concrete hall with subtle ambient occlusion",
+      "fallback": "High-fidelity CSS/Canvas 2D perspective corridor with smooth parallax motion for low-tier GPU or reduced motion preferences"
+    }
+  },
+  "component_design": {
+    "browser_frame": "Mac-style glass header with 3 window control dots, URL bar showing real route, dark metallic body padding with subgrid layout",
+    "phone_frame": "iPhone 16 Pro bezel with dynamic island notch, tactile side buttons, realistic shadow elevation, and interactive screen viewport",
+    "contact_sheet_annotations": "Monospace overlay badges with frame numbers (e.g., [CS-01 // STAYEASE]), lens specs, scale ratio, and platform format tags",
+    "portrait_placeholder": "3:4 ratio raw studio panel with technical crosshair crop marks, exposure calibration scale, label 'BHANUPRASAD L — FOUNDER / PRODUCT ARCHITECT' (no fake generated face)",
+    "splitfin_prototype": "Interactive tappable mobile app screen with tab bar (Overview, Groups, Split Bill, Settle Up), live slider for bill split calculations, and simulated haptic feedbacks",
+    "marquee": "Slow editorial text ribbon running seamlessly across product transitions with low-contrast luxury serif text and dot dividers"
+  },
+  "motion": {
+    "smooth_scroll": "Lenis smooth scroll with lerp 0.08 and weight dampening",
+    "scroll_reveals": "Framer Motion staggered line-by-line reveal with clip-path mask unveil",
+    "micro_interactions": "Magnetic hover buttons, subtle image tilt on hover, glowing trace border on active cards"
+  },
+  "image_urls": {
+    "stayease": [
+      {
+        "url": "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "category": "hero_editorial",
+        "description": "Wood-paneled luxury hotel room suite interior"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1731336478850-6bce7235e320?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "category": "gallery_suite",
+        "description": "Boutique hospitality suite bedroom interior"
+      }
+    ],
+    "stockpilot": [
+      {
+        "url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "category": "hero_editorial",
+        "description": "Modern automated logistics warehouse inventory"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1553413077-190dd305871c?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "category": "gallery_warehouse",
+        "description": "High-density warehouse rack distribution system"
+      }
+    ],
+    "splitfin": [
+      {
+        "url": "https://images.unsplash.com/photo-1761198879998-6bb91fd6797c?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "category": "hero_editorial",
+        "description": "Modern mobile financial app held in hand"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1645226880663-81561dcab0ae?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "category": "gallery_analytics",
+        "description": "Mobile financial chart dashboard interaction"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Strictly follow the user's choice: 'B: The Passage, with C's prints' for homepage visual narrative.",
+    "Do NOT create a generic developer résumé or skills list section (no React/Node tags or progress bars).",
+    "Show three distinct product stars: StayEase, StockPilot (concept screens), Splitfin (MOBILE-ONLY, no desktop frame!).",
+    "Implement real working React UI mockups inside custom browser and phone frame components.",
+    "Splitfin product page MUST feature a fully interactive tappable mobile phone prototype with bill split calculator.",
+    "All navigation links and action buttons MUST include descriptive data-testid attributes (e.g. data-testid='nav-stayease-link').",
+    "Ensure header/navigation bar is visible with subtle backdrop blur and non-transparent background.",
+    "Include WebGL fallback support and prefers-reduced-motion check so performance remains fast on all devices."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Never use generic centered layouts or plain gradients.",
+    "Use 2-3x generous spacing with explicit padding inside bordered containers.",
+    "All interactive elements must have micro-interactions (hover states, click states, focus indicators).",
+    "DO NOT use emojis as UI icons. Use lucide-react or @heroicons/react icons.",
+    "Ensure color contrast meets APCA / WCAG standards.",
+    "All interactive elements MUST contain data-testid attributes."
+  ]
+}
